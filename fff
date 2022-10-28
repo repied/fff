@@ -1057,6 +1057,15 @@ key() {
             }
         ;;
 
+        ## add ? to display keyboard shortcuts
+        "?")
+            clear_screen
+            cat ~/bin/fff/fff.1 | grep -A 62 "Usage"| grep -v "^\." | less
+            setup_terminal
+            redraw
+        ;;
+
+
         # Show image in terminal.
         ${FFF_KEY_IMAGE:=i})
             draw_img
