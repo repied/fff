@@ -598,6 +598,7 @@ open() {
 
         # Open all text-based files in '$EDITOR'.
         # Everything else goes through 'xdg-open'/'open'.
+        echo "$mime_type"
         case "$mime_type" in
             text/*|*x-empty*|*json*)
                 # If 'fff' was opened as a file picker, save the opened
@@ -611,6 +612,14 @@ open() {
                 clear_screen
                 reset_terminal
                 "${VISUAL:-${EDITOR:-vi}}" "$1"
+                setup_terminal
+                redraw
+            ;;
+
+            application/x-gzip*)
+                clear_screen
+                reset_terminal
+                "zcat" "$1" | less -S
                 setup_terminal
                 redraw
             ;;
