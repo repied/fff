@@ -623,6 +623,14 @@ open() {
                 redraw
             ;;
 
+            application/octet-stream*)
+                clear_screen
+                reset_terminal
+                vd --filetype=parquet "$1" 
+                setup_terminal
+                redraw
+            ;;
+
             *)
                 # 'nohup':  Make the process immune to hangups.
                 # '&':      Send it to the background.
